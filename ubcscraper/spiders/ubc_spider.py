@@ -17,7 +17,7 @@ class UBCSpider(scrapy.Spider):
         cl.add_xpath('code', '//h4', re='(\w{4}\s\w{3,4})')
         cl.add_xpath('name', '//h4', re='\w{4}\s\w{3,4}\s(.+)')
         cl.add_xpath('credits', 'body/div/div/p[2]', re='Credits:\s(\d+)')
-        cl.add_xpath('prereqs', 'body/div/div/p[3]', re='(\w{4}\s\d{3})')
+        cl.add_xpath('prereqs', 'body/div/div/p[3]', re='(\w{4}\s\w{3,4})')
         rows = response.xpath('body/div/div/table/tr')
         sections = []
         for row in rows:

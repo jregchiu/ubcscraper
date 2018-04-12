@@ -14,10 +14,10 @@ class TestCPSC210Spider(scrapy.Spider):
 
     def parse(self, response):
         cl = CourseLoader(item=Course(), response=response)
-        cl.add_xpath('code', '//h4', re='(\w{4}\s\d{3})')
-        cl.add_xpath('name', '//h4', re='\w{4}\s\d{3}\s(.+)')
+        cl.add_xpath('code', '//h4', re='(\w{4}\s\w{3,4})')
+        cl.add_xpath('name', '//h4', re='\w{4}\s\w{3,4}\s(.+)')
         cl.add_xpath('credits', 'body/div/div/p[2]', re='Credits:\s(\d+)')
-        cl.add_xpath('prereqs', 'body/div/div/p[3]', re='(\w{4}\s\d{3})')
+        cl.add_xpath('prereqs', 'body/div/div/p[3]', re='(\w{4}\s\w{3,4})')
         sections = []
         for row in response.xpath('body/div/div/table/tr'):
             sl = SectionLoader(item=Section(), selector=row)
@@ -50,7 +50,7 @@ class TestCPSCSpider(scrapy.Spider):
         cl.add_xpath('code', '//h4', re='(\w{4}\s\w{3,4})')
         cl.add_xpath('name', '//h4', re='\w{4}\s\w{3,4}\s(.+)')
         cl.add_xpath('credits', 'body/div/div/p[2]', re='Credits:\s(\d+)')
-        cl.add_xpath('prereqs', 'body/div/div/p[3]', re='(\w{4}\s\d{3})')
+        cl.add_xpath('prereqs', 'body/div/div/p[3]', re='(\w{4}\s\w{3,4})')
         rows = response.xpath('body/div/div/table/tr')
         sections = []
         for row in rows:
