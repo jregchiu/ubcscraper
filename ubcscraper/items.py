@@ -23,6 +23,7 @@ class Course(scrapy.Item):
 
 class Section(scrapy.Item):
     code = scrapy.Field()
+    course = scrapy.Field()
     status = scrapy.Field()
     activity = scrapy.Field()
     term = scrapy.Field()
