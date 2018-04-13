@@ -24,7 +24,7 @@ class TestCPSC210Spider(scrapy.Spider):
         for row in response.xpath('body/div/div/table/tr'):
             sl = SectionLoader(item=Section(), selector=row)
             sl.add_xpath('course', './td[2]/a/text()', re='(\w{4}\s\w{3,4})')
-            sl.add_xpath('code', './td[2]/a/text()', re='\w{4}\s\w{3,4}\s(.+)')
+            sl.add_xpath('code', './td[2]/a/text()')
             sl.add_xpath('status', './td[1]')
             sl.add_xpath('activity', './td[3]')
             sl.add_xpath('term', './td[4]')
@@ -60,7 +60,7 @@ class TestCPSCSpider(scrapy.Spider):
         for row in response.xpath('body/div/div/table/tr'):
             sl = SectionLoader(item=Section(), selector=row)
             sl.add_xpath('course', './td[2]/a/text()', re='(\w{4}\s\w{3,4})')
-            sl.add_xpath('code', './td[2]/a/text()', re='\w{4}\s\w{3,4}\s(.+)')
+            sl.add_xpath('code', './td[2]/a/text()')
             sl.add_xpath('status', './td[1]')
             sl.add_xpath('activity', './td[3]')
             sl.add_xpath('term', './td[4]')
