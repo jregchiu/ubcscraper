@@ -17,6 +17,8 @@ class Course(scrapy.Item):
     name = scrapy.Field()
     credits = scrapy.Field()
     prereqs = scrapy.Field()
+    coreqs = scrapy.Field()
+    activities = scrapy.Field()
     sections = scrapy.Field()
 
 class Section(scrapy.Item):
