@@ -17,3 +17,4 @@ class SectionLoader(ItemLoader):
     default_output_processor = TakeFirst()
     status_in = MapCompose(remove_tags, filter_status, str.strip)
     days_out = Identity()
+    term_out = Identity()
