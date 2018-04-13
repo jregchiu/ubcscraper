@@ -3,7 +3,7 @@ from ubcscraper.loaders import CourseLoader, SectionLoader
 from ubcscraper.items import Course, Section
 
 class UBCSpider(scrapy.Spider):
-    name = 'UBC Course Spider'
+    name = 'UBC Spider'
 
     def start_requests(self):
         yield scrapy.Request('https://courses.students.ubc.ca/cs/main?pname=subjarea&tname=subjareas&req=1&dept={0}&sessyr={1}&sesscd={2}'.format(self.dept, self.year, self.session), self.parse)
@@ -26,7 +26,7 @@ class UBCSpider(scrapy.Spider):
             sl.add_xpath('status', './td[1]')
             sl.add_xpath('activity', './td[3]')
             sl.add_xpath('term', './td[4]')
-            sl.add_xpath('days', './td[6]')
+            sl.add_xpath('days', './td[6]', re='(\w{3})')
             sl.add_xpath('start', './td[7]')
             sl.add_xpath('end', './td[8]')
             s = sl.load_item()
