@@ -4,9 +4,13 @@ from ubcscraper.items import Course, Section
 
 class UBCDeptSpider(scrapy.Spider):
     name = 'UBC'
+    custom_settings = {
+        'FEED_FORMAT': 'jsonlines',
+        'FEED_URI': 'data/%(dept)s%(year)s%(session)s.jl'
+    }
 
     def start_requests(self):
-        yield scrapy.Request('https://courses.students.ubc.ca/cs/main?pname=subjarea&tname=subjareas&req=1&dept={0}&sessyr={1}&sesscd={2}'.format(self.dept, self.year, self.session), self.parse)
+        yield scrapy.Request('https://courses.students.ubc.ca/cs/main?pname=subjarea&tname=subjareas&req=1&dept={0}&sessyr={1}&sesscd={2}'.format(self.dept.upper(), self.year, self.session.upper()), self.parse)
 
     def parse(self, response):
         for href in response.xpath('body/div/div/table//a/@href'):

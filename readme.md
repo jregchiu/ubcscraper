@@ -10,8 +10,10 @@ Python 3.6.5 and Scrapy 1.5.0 or higher are required. It's recommended to use a 
 
 ```shell
 cd ubcscraper
-scrapy crawl 'UBC Course Spider' -a dept=<4 letter department code> -a year=<4 digit year> -a session=<W for winter or S for summer> -o <filename>.json
+scrapy crawl 'UBC' -a dept=<4 letter department code> -a year=<4 digit year> -a session=<W for winter or S for summer>
 ```
+
+Scrapy will then output the scraped data to a 'JSON lines' file in the `data/` directory, named in the format `<dept code><year><session code>.jl`
 
 ### Settings
 
