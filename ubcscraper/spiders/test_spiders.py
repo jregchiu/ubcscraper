@@ -2,7 +2,7 @@ import scrapy
 from ubcscraper.loaders import CourseLoader, SectionLoader
 from ubcscraper.items import Course, Section
 
-class TestSingleCourseSpider(scrapy.Spider):
+class TestCourseSpider(scrapy.Spider):
     name = 'Test CPSC 340'
 
     def start_requests(self):
