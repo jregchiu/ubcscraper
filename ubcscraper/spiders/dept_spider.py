@@ -3,7 +3,7 @@ from ubcscraper.loaders import CourseLoader, SectionLoader
 from ubcscraper.items import Course, Section
 
 class UBCDeptSpider(scrapy.Spider):
-    name = 'UBC'
+    name = 'UBC Dept'
     custom_settings = {
         'FEED_FORMAT': 'jsonlines',
         'FEED_URI': 'data/%(dept)s%(year)s%(session)s.jl'
