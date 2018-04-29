@@ -4,7 +4,6 @@ from ubcscraper.items import Course, Section
 
 class UBCSpider(scrapy.Spider):
     name = 'UBC Spider'
-    to_scrape = ('CPSC')
 
     def start_requests(self):
         yield scrapy.Request('https://courses.students.ubc.ca/cs/main?pname=subjarea&tname=subjareas&req=0&sessyr={0}&sesscd={1}'.format(self.year, self.session.upper()), self.parse)
