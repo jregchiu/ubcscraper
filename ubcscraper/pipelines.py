@@ -6,6 +6,7 @@
 # See: https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 
 from scrapy.exporters import JsonLinesItemExporter
+from scrapy.exceptions import DropItem
 
 class UbcscraperPipeline(object):
     def process_item(self, item, spider):
@@ -33,3 +34,12 @@ class PerDeptJsonLinesPipeline(object):
         exporter = self._exporter_for_item(item, spider)
         exporter.export_item(item)
         return item
+
+class RequiredSectionFieldsPipeline(object):
+    required_keys = ('activity', 'term', 'days', 'start', 'end')
+
+    def process_item(self, item, spider):
+        if all (k in item for k in self.required_keys):
+            return item
+        else:
+            raise DropItem('Section {} missing a required field'.format(item['code']))

@@ -64,9 +64,9 @@ CONCURRENT_REQUESTS_PER_DOMAIN = 8
 
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'ubcscraper.pipelines.PerDeptJsonLinesPipeline': 1000,
-#}
+ITEM_PIPELINES = {
+    'ubcscraper.pipelines.RequiredSectionFieldsPipeline': 1000,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/autothrottle.html
