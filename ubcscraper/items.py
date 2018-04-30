@@ -22,8 +22,10 @@ class Course(scrapy.Item):
     sections = scrapy.Field()
 
 class Section(scrapy.Item):
-    code = scrapy.Field()
     course = scrapy.Field()
+    year = scrapy.Field()
+    session = scrapy.Field()
+    code = scrapy.Field()
     status = scrapy.Field()
     activity = scrapy.Field()
     term = scrapy.Field()
