@@ -27,7 +27,7 @@ ROBOTSTXT_OBEY = True
 # Configure a delay for requests for the same website (default: 0)
 # See https://doc.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-DOWNLOAD_DELAY = 4
+DOWNLOAD_DELAY = 3
 # The download delay setting will honor only one of:
 CONCURRENT_REQUESTS_PER_DOMAIN = 8
 #CONCURRENT_REQUESTS_PER_IP = 16
@@ -65,7 +65,7 @@ CONCURRENT_REQUESTS_PER_DOMAIN = 8
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-    'ubcscraper.pipelines.RequiredSectionFieldsPipeline': 1000,
+    'ubcscraper.pipelines.RequiredSectionFieldsPipeline': 100,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -77,7 +77,7 @@ AUTOTHROTTLE_START_DELAY = 5
 AUTOTHROTTLE_MAX_DELAY = 60
 # The average number of requests Scrapy should be sending in parallel to
 # each remote server
-AUTOTHROTTLE_TARGET_CONCURRENCY = 2
+AUTOTHROTTLE_TARGET_CONCURRENCY = 3
 # Enable showing throttling stats for every response received:
 #AUTOTHROTTLE_DEBUG = False
 
