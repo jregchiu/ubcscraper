@@ -1,6 +1,6 @@
 import scrapy
-from ubcscraper.loaders import CourseLoader, SectionLoader
-from ubcscraper.items import Course, Section
+from ubcscraper.loaders import SectionLoader
+from ubcscraper.items import Section
 
 class UBCSpider(scrapy.Spider):
     name = 'UBC'
@@ -19,19 +19,20 @@ class UBCSpider(scrapy.Spider):
             yield response.follow(href, self.parse_course)
 
     def parse_course(self, response):
-        for row in response.xpath('body/div/div/table/tr'):
-            yield self.parse_section(row)
+        for href in response.xpath('body/div/div/table//a/@href'):
+            yield response.follow(href, self.parse_section)
 
-    def parse_section(self, row):
-        sl = SectionLoader(item=Section(), selector=row)
-        sl.add_xpath('course', './td[2]/a/text()', re='(\w{4}\s\w{3,4})')
-        sl.add_value('year', self.year)
-        sl.add_value('session', self.session.upper())
-        sl.add_xpath('code', './td[2]/a/text()')
-        sl.add_xpath('status', './td[1]')
-        sl.add_xpath('activity', './td[3]')
-        sl.add_xpath('term', './td[4]', re='(\d+)')
-        sl.add_xpath('days', './td[6]', re='(\w{3})')
-        sl.add_xpath('start', './td[7]')
-        sl.add_xpath('end', './td[8]')
-        return sl.load_item()
+    def parse_section(self, response):
+        td = response.xpath('body/div/div/table[2]//td')
+        for i in range(len(td) // 6):
+            sl = SectionLoader(item=Section(), response=response)
+            sl.add_xpath('course', 'body/div/div/h4', re='(\w{4}\s\w{3,4})')
+            sl.add_value('year', self.year)
+            sl.add_value('session', self.session.upper())
+            sl.add_xpath('code', 'body/div/div/h4', re='(\w{4}\s\w{3,4}\s\w{3,4})')
+            sl.add_xpath('activity', 'body/div/div/h4', re='\((\w+)\)')
+            sl.add_value('term', td[i].re(r'(\d+)'))
+            sl.add_value('days', td[i+1].re(r'(\w{3})'))
+            sl.add_value('start', td[i+2].extract())
+            sl.add_value('end', td[i+3].extract())
+            yield sl.load_item()

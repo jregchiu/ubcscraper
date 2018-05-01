@@ -36,7 +36,7 @@ class PerDeptJsonLinesPipeline(object):
         return item
 
 class RequiredSectionFieldsPipeline(object):
-    required_keys = ('activity', 'term', 'days', 'start', 'end')
+    required_keys = ('course', 'code', 'activity', 'term', 'days', 'start', 'end')
 
     def process_item(self, item, spider):
         if all (k in item for k in self.required_keys):
