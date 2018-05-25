@@ -1,0 +1,36 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+"asn1crypto" = "*"
+attrs = "*"
+cffi = "*"
+constantly = "*"
+cryptography = "*"
+cssselect = "*"
+hyperlink = "*"
+idna = "*"
+incremental = "*"
+lxml = "*"
+parsel = "*"
+"pyasn1" = "*"
+"pyasn1-modules" = "*"
+pycparser = "*"
+queuelib = "*"
+six = "*"
+"w3lib" = "*"
+"zope.interface" = "*"
+Automat = "*"
+PyDispatcher = "*"
+pyOpenSSL = "*"
+Scrapy = "*"
+service_identity = "*"
+Twisted = "*"
+shub = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.6"
