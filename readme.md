@@ -17,4 +17,4 @@ Scrapy outputs the scraped data to a 'JSON lines' file in the `data/` directory,
 
 ### Settings
 
-Review the [Avoiding Getting Banned](https://docs.scrapy.org/en/latest/topics/practices.html#avoiding-getting-banned) and [AutoThrottle extension](https://docs.scrapy.org/en/latest/topics/autothrottle.html) documents for additional information. The settings for spiders can be edited in `ubcscraper.settings`, but could also be set in the `myspider.py` files. More information is available in the [Scrapy docs](https://docs.scrapy.org/en/latest/topics/settings.html).
+Review the [Avoiding Getting Banned](https://docs.scrapy.org/en/latest/topics/practices.html#avoiding-getting-banned) and [AutoThrottle extension](https://docs.scrapy.org/en/latest/topics/autothrottle.html) documents for additional information. The settings for spiders can be edited in `ubcscraper.settings`, but could also be set in the `myspider.py` files. More information is available in the [Scrapy documents](https://docs.scrapy.org/en/latest/topics/settings.html).
